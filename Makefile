@@ -147,6 +147,7 @@ build: ## Build
 	go build -v -o $(OUTPUT_DIR)/dingmark-$(GOOS)-$(GOARCH) \
 		 -ldflags "-s -w -X $(ROOT)/pkg/version.Version=$(VERSION) -X $(ROOT)/pkg/version.Commit=$(COMMIT) -X $(ROOT)/pkg/version.Package=$(ROOT)" \
 		 $(CMD_DIR)/dingmark
+	cp $(OUTPUT_DIR)/dingmark-$(GOOS)-$(GOARCH) $(OUTPUT_DIR)/dingmark-$(VERSION)-$(GOOS)-$(GOARCH)
 
 .PHONY: build-wasm
 build-wasm: ## Build WASM

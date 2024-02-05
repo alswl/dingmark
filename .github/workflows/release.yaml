@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+
+  build:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
+        with:
+          go-version: "1.21.6"
+
+      - name: Get dependencies
+        run: |
+          go mod download
+
+      - name: Lint and Test
+        run: |
+          make install-dev-tools
+          make lint
+          make test
+
+      - name: Build
+        run: |
+          sed -i "s/-dev//" VERSION
+          GOOS=linux GOARCH=amd64 make build VERSION=$(cat VERSION)
+          GOOS=linux GOARCH=arm64 make build VERSION=$(cat VERSION)
+          GOOS=darwin GOARCH=amd64 make build VERSION=$(cat VERSION)
+          GOOS=darwin GOARCH=arm64 make build VERSION=$(cat VERSION)
+          GOOS=windows GOARCH=amd64 make build VERSION=$(cat VERSION)
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.CI_GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            bin/dingmark-v*-*-*
