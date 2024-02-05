@@ -144,22 +144,18 @@ generate-manual: ## Generate develop docs
 
 .PHONY: build
 build: ## Build
-	export GOOS=$(GOOS) GOARCH=$(GOARCH); \
 	go build -v -o $(OUTPUT_DIR)/dingmark-$(GOOS)-$(GOARCH) \
 		 -ldflags "-s -w -X $(ROOT)/pkg/version.Version=$(VERSION) -X $(ROOT)/pkg/version.Commit=$(COMMIT) -X $(ROOT)/pkg/version.Package=$(ROOT)" \
 		 $(CMD_DIR)/dingmark
-		 
+
 .PHONY: build-wasm
-GOOS=js
-GOARCH=wasm
 build-wasm: ## Build WASM
-	export GOOS=$(GOOS) GOARCH=$(GOARCH); \
-	go build -v -o $(OUTPUT_DIR)/dingmark-$(GOOS)-$(GOARCH) \
+	GOOS=js GOARCH=wasm go build -v -o $(OUTPUT_DIR)/dingmark-js-wasm \
 		-ldflags "-s -w -X $(ROOT)/pkg/version.Version=$(VERSION) -X $(ROOT)/pkg/version.Commit=$(COMMIT) -X $(ROOT)/pkg/version.Package=$(ROOT)" \
 		 $(CMD_WASM_DIR)/dingmark
 	 
 	cp $(shell go env GOROOT)/misc/wasm/wasm_exec.js $(PROJECT_DIR)/static/wasm_exec.js
-	cp $(OUTPUT_DIR)/dingmark-$(GOOS)-$(GOARCH) $(PROJECT_DIR)/static/main.wasm
+	cp $(OUTPUT_DIR)/dingmark-js-wasm $(PROJECT_DIR)/static/main.wasm
 
 .PHONY: test
 test: ## Run unit tests
