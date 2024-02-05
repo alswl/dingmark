@@ -41,11 +41,8 @@ func initConfig() {
 
 func main() {
 	cobra.OnInitialize(initConfig)
-	rootCmd := root.NewRootCmd()
+	rootCmd := root.NewRootCmd(&cfgFile)
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", fmt.Sprintf("config file (default is $HOME/.config/%s.yaml)", root.App))
-	rootCmd.PersistentFlags().String("token", "", "token")
-	rootCmd.PersistentFlags().String("secret", "", "secret")
 	_ = viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token"))
 	_ = viper.BindPFlag("secret", rootCmd.PersistentFlags().Lookup("secret"))
 	// viper args can NOT set required

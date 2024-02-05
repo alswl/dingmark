@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-	err := doc.GenMarkdownTree(root.NewRootCmd(), "./docs")
+	cfgFile := ""
+	err := doc.GenMarkdownTree(root.NewRootCmd(&cfgFile), "./docs")
 	if err != nil {
 		logrus.WithError(err).Fatal("generate markdown failed")
 	}

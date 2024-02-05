@@ -12,6 +12,14 @@ dingmark send [flags]
   -h, --help   help for send
 ```
 
+### Options inherited from parent commands
+
+```
+      --config string   config file (default is $HOME/.config/dingmark.yaml)
+      --secret string   secret
+      --token string    token
+```
+
 ### SEE ALSO
 
 * [dingmark](dingmark.md)	 - 

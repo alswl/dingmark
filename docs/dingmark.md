@@ -5,7 +5,10 @@
 ### Options
 
 ```
-  -h, --help   help for dingmark
+      --config string   config file (default is $HOME/.config/dingmark.yaml)
+  -h, --help            help for dingmark
+      --secret string   secret
+      --token string    token
 ```
 
 ### SEE ALSO

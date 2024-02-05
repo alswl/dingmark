@@ -2,6 +2,10 @@
 
 Go cli and WASM online for DingTalk send markdown message
 
+## Snapshot
+
+![img.png](assets/snapshot.png)
+
 ## Usage
 
 Send markdown:
@@ -38,6 +42,11 @@ Use "dingmark [command] --help" for more information about a command.
 
 Document: [alswl/dingmark/docs](https://github.com/alswl/dingmark/blob/master/docs/dingmark.md)
 
-## Snapshot
+## Configurations
 
-![img.png](assets/snapshot.png)
+Config file is located at `$HOME/.config/dingmark.yaml`.
+
+```yaml
+token: 129xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxf7
+secret: SECxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx670
+```

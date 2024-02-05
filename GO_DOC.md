@@ -145,7 +145,7 @@ import "github.com/alswl/dingmark/cmd/dingmark/root"
 
 - [Constants](<#constants>)
 - [Variables](<#variables>)
-- [func NewRootCmd\(\) \*cobra.Command](<#NewRootCmd>)
+- [func NewRootCmd\(cfgFile \*string\) \*cobra.Command](<#NewRootCmd>)
 
 
 ## Constants
@@ -197,10 +197,10 @@ var SendCmd = &cobra.Command{
 ```
 
 <a name="NewRootCmd"></a>
-## func [NewRootCmd](<https://github.com/alswl/dingmark/blob/master/cmd/dingmark/root/root.go#L10>)
+## func [NewRootCmd](<https://github.com/alswl/dingmark/blob/master/cmd/dingmark/root/root.go#L11>)
 
 ```go
-func NewRootCmd() *cobra.Command
+func NewRootCmd(cfgFile *string) *cobra.Command
 ```
 
 
