@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github.com/alswl/dingmark/pkg/version"
 	"os"
 	"path"
+
+	"github.com/alswl/dingmark/cmd/dingmark/root"
+	"github.com/alswl/dingmark/pkg/version"
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
-
-const app = "dingmark"
 
 var (
 	// Used for flags.
@@ -29,7 +29,7 @@ func initConfig() {
 
 		// Search config in home directory with name ".cobra" (without extension).
 		viper.AddConfigPath(path.Join(home, ".config"))
-		viper.SetConfigName(app)
+		viper.SetConfigName(root.App)
 	}
 
 	viper.AutomaticEnv()
@@ -39,28 +39,20 @@ func initConfig() {
 	}
 }
 
-var rootCmd = &cobra.Command{
-	Use:              app,
-	TraverseChildren: true,
-	Version:          version.Version,
-}
-
 func main() {
 	cobra.OnInitialize(initConfig)
+	rootCmd := root.NewRootCmd()
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", fmt.Sprintf("config file (default is $HOME/.config/%s.yaml)", app))
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", fmt.Sprintf("config file (default is $HOME/.config/%s.yaml)", root.App))
 	rootCmd.PersistentFlags().String("token", "", "token")
 	rootCmd.PersistentFlags().String("secret", "", "secret")
-	viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token"))
-	viper.BindPFlag("secret", rootCmd.PersistentFlags().Lookup("secret"))
+	_ = viper.BindPFlag("token", rootCmd.PersistentFlags().Lookup("token"))
+	_ = viper.BindPFlag("secret", rootCmd.PersistentFlags().Lookup("secret"))
 	// viper args can NOT set required
 	rootCmd.SetVersionTemplate(fmt.Sprintf("version {{.Version}}, commit %s, package %s\n", version.Commit, version.Package))
-
-	rootCmd.AddCommand(sendCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
-
 }

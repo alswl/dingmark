@@ -7,10 +7,10 @@ import (
 )
 
 func SendMarkdown(token, secret, title, text string) (*response.Response, error) {
-	//机器人Token是webhook上的access_token参数值
+	// 机器人 Token 是 webhook 上的 access_token 参数值
 	client := robot.New(token, secret)
 
-	//markdown类型
+	// markdown 类型
 	markdown := message.NewMarkdown()
 	markdown.SetTitle(title)
 	markdown.SetText(text)
@@ -19,5 +19,4 @@ func SendMarkdown(token, secret, title, text string) (*response.Response, error)
 		return resp, err
 	}
 	return resp, nil
-
 }

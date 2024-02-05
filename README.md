@@ -1,2 +1,3 @@
 # dingmark
-Go cli for DingTalk send markdown message
+
+Go cli and WASM online for DingTalk send markdown message

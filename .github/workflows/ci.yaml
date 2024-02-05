@@ -1,0 +1,34 @@
+name: Go
+
+on:
+  push:
+    branches: [ master, develop, fix/*, feat/* ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v4
+      with:
+        go-version: "1.21.6"
+
+    - name: Get dependencies
+      run: |
+        go mod download
+
+    - name: Build
+      run: |
+        make build
+        make build-wasm
+
+    - name: Lint and Test
+      run: |
+        make install-dev-tools
+        make lint
+        make test
