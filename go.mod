@@ -3,7 +3,6 @@ module github.com/alswl/dingmark
 go 1.20
 
 require (
-	github.com/iaping/go-dingtalk-robot v0.0.0-20201112032638-0cba622c7fd2
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2

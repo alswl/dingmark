@@ -3,8 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	robot "github.com/iaping/go-dingtalk-robot"
-	"github.com/iaping/go-dingtalk-robot/message"
+	"github.com/alswl/dingmark/pkg/services"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -34,17 +33,11 @@ var sendCmd = &cobra.Command{
 		title := args[0]
 		text := args[1]
 
-		//机器人Token是webhook上的access_token参数值
-		client := robot.New(token, secret)
-
-		//markdown类型
-		markdown := message.NewMarkdown()
-		markdown.SetTitle(title)
-		markdown.SetText(text)
-		resp, err := client.Send(markdown)
-		if err == nil {
-			fmt.Println("result:", resp.IsSuccess(), "code:", resp.GetCode(), "message:", resp.GetMessage())
+		resp, err := services.SendMarkdown(token, secret, title, text)
+		if err != nil {
+			fmt.Println(err)
+			return
 		}
-
+		fmt.Println("result:", resp.IsSuccess(), "code:", resp.GetCode(), "message:", resp.GetMessage())
 	},
 }
