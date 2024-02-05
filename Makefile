@@ -154,12 +154,12 @@ GOOS=js
 GOARCH=wasm
 build-wasm: ## Build WASM
 	export GOOS=$(GOOS) GOARCH=$(GOARCH); \
-	go build -v -o $(OUTPUT_DIR)/dingmarkjs-$(GOOS)-$(GOARCH) \
+	go build -v -o $(OUTPUT_DIR)/dingmark-$(GOOS)-$(GOARCH) \
 		-ldflags "-s -w -X $(ROOT)/pkg/version.Version=$(VERSION) -X $(ROOT)/pkg/version.Commit=$(COMMIT) -X $(ROOT)/pkg/version.Package=$(ROOT)" \
-		 $(CMD_WASM_DIR)/dingmarkjs
+		 $(CMD_WASM_DIR)/dingmark
 	 
 	cp $(shell go env GOROOT)/misc/wasm/wasm_exec.js $(PROJECT_DIR)/static/wasm_exec.js
-	cp $(OUTPUT_DIR)/dingmarkjs-$(GOOS)-$(GOARCH) $(PROJECT_DIR)/static/main.wasm
+	cp $(OUTPUT_DIR)/dingmark-$(GOOS)-$(GOARCH) $(PROJECT_DIR)/static/main.wasm
 
 .PHONY: test
 test: ## Run unit tests
