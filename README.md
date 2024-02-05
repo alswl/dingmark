@@ -1,12 +1,17 @@
-# dingmark
+# dingmark (CLI & WASM)
 
-Go cli and WASM online for DingTalk send markdown message
+Go CLI and WASM online for DingTalk send markdown message.
 
-## Snapshot
+## WASM online(Recommended)
+
+[dingmark(WASM)](https://alswl.github.io/dingmark/)
 
 ![img.png](assets/snapshot.png)
 
-## Usage
+NOTICE: The WASM online version required CORS Token, I prefer https://cors.sh/ (free) to proxy the request.
+Why CORS Token is required? Because browser security policy, the request from browser to DingTalk server is blocked by CORS policy.
+
+## CLI
 
 Send markdown:
 
@@ -50,7 +55,7 @@ Use "dingmark [command] --help" for more information about a command.
 
 Document: [alswl/dingmark/docs](https://github.com/alswl/dingmark/blob/master/docs/dingmark.md)
 
-## Configurations
+### CLI Configurations
 
 Config file is located at `$HOME/.config/dingmark.yaml`.
 
