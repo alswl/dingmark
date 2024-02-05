@@ -156,6 +156,8 @@ build-wasm: ## Build WASM
 		 $(CMD_WASM_DIR)/dingmark
 	 
 	cp $(shell go env GOROOT)/misc/wasm/wasm_exec.js $(PROJECT_DIR)/static/wasm_exec.js
+	cp $(OUTPUT_DIR)/dingmark-js-wasm $(OUTPUT_DIR)/dingmark-$(VERSION)-js-wasm
+
 	cp $(OUTPUT_DIR)/dingmark-js-wasm $(PROJECT_DIR)/static/main.wasm
 
 .PHONY: test

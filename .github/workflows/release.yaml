@@ -35,6 +35,7 @@ jobs:
           GOOS=darwin GOARCH=amd64 make build VERSION=$(cat VERSION)
           GOOS=darwin GOARCH=arm64 make build VERSION=$(cat VERSION)
           GOOS=windows GOARCH=amd64 make build VERSION=$(cat VERSION)
+          GOOS=js GOARCH=wasm make build-wasm VERSION=$(cat VERSION)
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
