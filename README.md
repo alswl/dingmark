@@ -8,9 +8,6 @@ Go CLI and WASM online for DingTalk send markdown message.
 
 ![img.png](assets/snapshot.png)
 
-NOTICE: The WASM online version required CORS Token, I prefer https://cors.sh/ (free) to proxy the request.
-Why CORS Token is required? Because browser security policy, the request from browser to DingTalk server is blocked by CORS policy.
-
 ## CLI
 
 Send markdown:
@@ -63,3 +60,10 @@ Config file is located at `$HOME/.config/dingmark.yaml`.
 token: 129xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxf7
 secret: SECxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx670
 ```
+
+## Deploy your self-host WASM
+
+- prepare cors.sh token, and put it to `.cors.sh-token`
+- run `build-wasm.sh` to build wasm
+- now the `static` directory is ready to deploy
+    - I recommend to use Github Pages to host the static files

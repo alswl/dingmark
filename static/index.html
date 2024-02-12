@@ -21,11 +21,10 @@
                 console.log('submit');
                 const token = document.getElementById('token').value;
                 const secret = document.getElementById('secret').value;
-                const corsToken = document.getElementById('corsToken').value;
                 const title = document.getElementById('title').value;
                 const text = document.getElementById('text').value;
 
-                const resp = SendMarkdown(token, secret, title, text, corsToken);
+                const resp = SendMarkdown(token, secret, title, text);
                 alert(JSON.stringify(resp));
             }
             $('.form-dingmark').on('submit', submit)
@@ -85,7 +84,7 @@
     <header class="masthead mb-auto">
     </header>
     <main role="main" class="inner cover">
-        <h1 class="cover-heading">dingmark</h1>
+        <h1 class="cover-heading">dingmark(WASM)</h1>
         <p>
             <a href="https://github.com/alswl/dingmark">Github</a>
             <a href="https://twitter.com/alswl">Twitter</a>
@@ -102,10 +101,6 @@
 
             <label for="secret" class="sr-only">Secret</label>
             <input type="text" id="secret" class="form-control" placeholder="Secret">
-
-            <label>Get free CORS Token from <a href="https://cors.sh/">https://cors.sh/</a></label>
-            <label for="corsToken" class="sr-only">CORS Token</label>
-            <input type="text" id="corsToken" class="form-control" placeholder="CORS Token" required>
 
             <label for="text" class="sr-only">Markdown</label>
             <textarea id="text" class="form-control" placeholder="Markdown" required></textarea>
