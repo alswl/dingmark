@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2024-02-12
+
+### Bug Fixes
+
+- Missing readme
+- Move release.md to changelog
+
+### Documentation
+
+- Nename changelog
+- New snapshot
+
+### Features
+
+- Using open source cors.sh token
+
+### Miscellaneous Tasks
+
+- Bump version to v0.3.0
+
 ## [0.2.4] - 2024-02-05
 
 ### Miscellaneous Tasks
