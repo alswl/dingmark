@@ -6,6 +6,7 @@ package main
 import (
 	"encoding/json"
 	"github.com/alswl/dingmark/pkg/services"
+	"github.com/alswl/dingmark/pkg/tokens"
 	robot "github.com/alswl/dingmark/third_party/go-ding-robot"
 	"syscall/js"
 )
@@ -23,14 +24,15 @@ func init() {
 }
 
 func jsFunc(this js.Value, args []js.Value) interface{} {
+	if len(args) != 4 {
+		return js.ValueOf("args length must be 4")
+	}
 	token := args[0]
 	secret := args[1]
 	title := args[2]
 	text := args[3]
-	corsToken := args[4] // hack CROS token
-
 	robot.ExtendHeaders = map[string]string{
-		"x-cors-api-key": corsToken.String(),
+		"x-cors-api-key": tokens.CORSDotSH,
 	}
 
 	resp, err := services.SendMarkdown(

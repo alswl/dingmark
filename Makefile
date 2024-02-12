@@ -62,6 +62,7 @@ GO_MOD_VERSION = $(shell cat go.mod | sha256sum | cut -c-6)
 GOOS = $(shell go env GOOS)
 GOARCH = $(shell go env GOARCH)
 VERSION ?= $(VERSION_IN_FILE)-$(BUILD_VERSION)
+CORSSHToken ?= $(shell cat .cors.sh-token)
 
 UT_COVER_PACKAGES := $(shell go list ./pkg/... |grep -Ev 'pkg/clientsets|pkg/dal|pkg/models|pkg/version|pkg/injector')
 
@@ -152,7 +153,7 @@ build: ## Build
 .PHONY: build-wasm
 build-wasm: ## Build WASM
 	GOOS=js GOARCH=wasm go build -v -o $(OUTPUT_DIR)/dingmark-js-wasm \
-		-ldflags "-s -w -X $(ROOT)/pkg/version.Version=$(VERSION) -X $(ROOT)/pkg/version.Commit=$(COMMIT) -X $(ROOT)/pkg/version.Package=$(ROOT)" \
+		-ldflags "-s -w -X $(ROOT)/pkg/tokens.CORSDotSH=$(CORSSHToken) -X $(ROOT)/pkg/version.Version=$(VERSION) -X $(ROOT)/pkg/version.Commit=$(COMMIT) -X $(ROOT)/pkg/version.Package=$(ROOT)" \
 		 $(CMD_WASM_DIR)/dingmark
 	 
 	cp $(shell go env GOROOT)/misc/wasm/wasm_exec.js $(PROJECT_DIR)/static/wasm_exec.js
